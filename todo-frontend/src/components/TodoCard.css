@@ -1,0 +1,25 @@
+.todoCard {
+    margin: 20px auto;
+    width: 90vw;
+    max-width: 720px;
+}
+
+.todoCard__createdBy {
+    color: var(--baby-blue);
+}
+
+.todoCard__todo {
+    color: var(--navy-blue);
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 18px;
+    padding-top: 15px;
+}
+
+.todoCard__description {
+    color: #333;
+}
+
+.todoCard__actionButtons {
+    margin-top: 25px;
+}

@@ -1,0 +1,13 @@
+.createUser {
+    margin: 100px auto;
+    max-width: 720px;
+}
+
+.createUser__form {
+    display: flex;
+    justify-content: center;
+}
+
+.createUser__submit {
+   margin-left: 15px !important;
+}
