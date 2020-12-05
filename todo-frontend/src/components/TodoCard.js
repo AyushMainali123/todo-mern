@@ -1,7 +1,14 @@
 import React from "react";
 import { Card, CardActions, CardContent, Button } from "@material-ui/core";
 import './TodoCard.css'
+import { useDispatch } from 'react-redux'
+import {removeTodo} from '../actions/todoActions'
 const TodoCard = ({ id, user, item, description }) => {
+
+  const dispatch = useDispatch()
+  const deleteTodo = () => {
+    dispatch(removeTodo(id));
+  }
   return (
     <div className="todoCard">
       <Card>
@@ -15,12 +22,11 @@ const TodoCard = ({ id, user, item, description }) => {
                       <Button variant="contained" color="primary" style={{ marginRight: 15}}>
               Update
             </Button>
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" color="secondary" onClick = {() => deleteTodo()}>
               Delete
             </Button>
           </div>
         </CardContent>
-        <CardActions></CardActions>
       </Card>
     </div>
   );

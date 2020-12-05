@@ -4,6 +4,7 @@ import TodoCard from "../components/TodoCard";
 import { ClockLoader } from "react-spinners";
 import {} from "../actions/userActions";
 import { getTodos } from "../actions/todoActions";
+import './Home.css'
 const Home = () => {
   const users = useSelector((state) => state.userReducer).users;
   const {todos, loading:todoLoading, error:todoError}= useSelector(
@@ -37,12 +38,12 @@ const Home = () => {
       return loader();
     }
     if (todoError) { 
-      return (<h3>Error Loading datas</h3>);
+      return (<h3 className = "home__message">Error Loading datas....</h3>);
     }
     if (todos.length) {
       return getAllTodos()
     }
-    return (<h3>No todos!!</h3>)
+    return <h3 className="home__message">No todos!!</h3>;
     
   };
 
