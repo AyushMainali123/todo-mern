@@ -4,3 +4,17 @@
     --blue: #0000FF;
     --baby-blue: #7EC8E3;
 }
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+.createTodo {
+    margin: 100px auto;
+    display: flex;
+    justify-content: center;
+}
