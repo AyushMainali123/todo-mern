@@ -50,11 +50,11 @@ router.delete("/:id", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-router.delete("/deleteByUserName/:name", (req, res) => {
+router.delete("/deleteByUserName/:name", async (req, res) => {
   let user = req.params.name;
-  console.log({ user });
-  Todo.deleteMany({ user })
-    .then((response) => res.json(response))
-    .catch((err) => res.status(400).json(err));
+  const userToDelete = await User.findOne({ name: user })
+  const todoResult = await Todo.deleteMany({ user: userToDelete })
+  const userResult = await User.deleteOne({ name: user })
+  res.json({todoResult, userResult})
 });
 module.exports = router;

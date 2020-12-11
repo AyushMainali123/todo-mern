@@ -6,31 +6,42 @@ const DeleteUser = () => {
   const { users } = useSelector((state) => state.userReducer);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(deleteUser(id));
+  const handleDelete = (id, name) => {
+    dispatch(deleteUser(id, name));
   };
 
   return (
     <div>
-      {users.map(({ name, id }) => (
-        <Card
-          key={id}
-          elevation={3}
-          raised={true}
-          style={{
-            padding: 15,
-            margin: "40px auto",
-            maxWidth: 720,
-            width: "80vw",
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}
-        >
-          <div>{name}</div>
-          <Button onClick={() => handleDelete(id)} variant="contained" color="secondary"> DELETE </Button>
-        </Card>
-      ))}
+      {users.length ? (
+        users.map(({ name, id }) => (
+          <Card
+            key={id}
+            elevation={3}
+            raised={true}
+            style={{
+              padding: 15,
+              margin: "40px auto",
+              maxWidth: 720,
+              width: "80vw",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <div>{name}</div>
+            <Button
+              onClick={() => handleDelete(id, name)}
+              variant="contained"
+              color="secondary"
+            >
+              {" "}
+              DELETE{" "}
+            </Button>
+          </Card>
+        ))
+      ) : (
+        <h3 className="home__message">No Users!!</h3>
+      )}
     </div>
   );
 };

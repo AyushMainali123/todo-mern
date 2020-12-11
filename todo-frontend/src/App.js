@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { Switch, Route } from "react-router-dom";
@@ -12,9 +12,12 @@ import { getUsers } from "./actions/userActions";
 import { getTodos } from "./actions/todoActions";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import MomentUtils from "@date-io/moment";
+
 function App() {
   const dispatch = useDispatch();
-
+  const users = useSelector(state => state.userReducer)
+  const todos = useSelector(state => state.todoReducer)
+  console.log(todos, users)
   useEffect(() => {
     dispatch(getUsers());
     dispatch(getTodos());

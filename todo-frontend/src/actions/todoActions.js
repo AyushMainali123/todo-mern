@@ -4,7 +4,6 @@ import axios from "../axiosInstance";
 export const getTodos = () => (dispatch) => {
   axios("/todo/")
     .then((response) => {
-      console.log({response})
       let todosToBeDispatched = response.data.map((todoItem) => {
         let { user, item, description, _id: id } = todoItem;
         console.log("User", {user})

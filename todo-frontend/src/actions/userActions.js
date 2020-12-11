@@ -58,27 +58,56 @@ export const addNewUser = (value, submitProps) => (dispatch) => {
     });
 };
 
-export const deleteUser = (id) => (dispatch) => {
-  axios.delete(`user/delete/${id}`).then((response) => {
-    console.log(response);
-    const { _id: id, name } = response.data;
-    dispatch({
-      type: DELETE_USER,
-      payload: {
-        id,
-      },
-    });
+// export const deleteUser = (id) => (dispatch) => {
+//   axios.delete(`user/delete/${id}`).then((response) => {
+//     console.log(response);
+//     const { _id: id, name } = response.data;
+//     dispatch({
+//       type: DELETE_USER,
+//       payload: {
+//         id,
+//       },
+//     });
+//     console.log({name})
 
-    axios.delete(`todo/deleteByUserName/${name}`)
-      .then(response => {
-      console.log(response)
-      dispatch({
-        type: DELETE_TODO_BY_USERNAME,
-        payload: {
-          user: name,
-        },
-      });
+//     axios.delete(`todo/deleteByUserName/${name}`)
+//       .then(response => {
+//       console.log(response)
+//       dispatch({
+//         type: DELETE_TODO_BY_USERNAME,
+//         payload: {
+//           user: name,
+//         },
+//       });
+//       })
+//       .catch(error => {
+//       console.log({error})
+//     })
+
+//   });
+// };
+
+export const deleteUser = (id, name) => (dispatch) => {
+  console.log("Hi")
+
+  axios.delete(`/todo/deleteByUserName/${name}`)
+    .then((response) => {
+      console.log({response});
+        dispatch({
+          type: DELETE_TODO_BY_USERNAME,
+          payload: {
+            user: name,
+          },
+        });
+        dispatch({
+          type: DELETE_USER,
+          payload: {
+            id,
+          },
+        });
     })
-
-  });
+    .catch((error) => {
+      console.log({ error });
+    });
+  console.log("End")
 };

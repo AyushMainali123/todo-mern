@@ -11,16 +11,16 @@ const Home = () => {
   const {todos, loading:todoLoading, error:todoError}= useSelector(
     (state) => state.todoReducer
   );
-  console.log(todos)
+  // console.log(todos)
   const getAllTodos = () => {
     
     return todos.map(({ id, user, item, description, startDate }) => {
-      console.log({id})
+      // console.log({id})
       return (
         <TodoCard
           key={id}
           id={id}
-          user={user}
+          user={user?.name || "Deleted User"}
           item={item}
           description={description}
           startDate = {startDate}

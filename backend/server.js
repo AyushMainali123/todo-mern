@@ -33,4 +33,5 @@ app.use((req, res) => res.json({msg: "404 Page"}))
 
 
 // Port
-app.listen(PORT, ()=>console.log(`Server Started at Port ${PORT}`))
+app.listen(PORT, () => console.log(`Server Started at Port ${PORT}`))
+

@@ -34,7 +34,10 @@ const todoReducer = (state = initialState, action) => {
       let user = action.payload.user;
       return {
         ...state,
-        todos: state.todos.filter((todo) => todo.user !== user),
+        todos: state.todos.filter((todo) => {
+          console.log(todo.user.name, user)
+          return todo.user.name !== user
+        }),
       };
     // Remove Todo
     case DELETE_TODO:
