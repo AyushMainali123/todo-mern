@@ -15,12 +15,12 @@ const Home = () => {
   const getAllTodos = () => {
     
     return todos.map(({ id, user, item, description, startDate }) => {
-      console.log({id})
+      console.log(item)
       return (
         <TodoCard
           key={id}
           id={id}
-          user={user}
+          user={user?.name || "DELETED USER" }
           item={item}
           description={description}
           startDate = {startDate}

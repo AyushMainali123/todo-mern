@@ -11,7 +11,8 @@ app.use(cors())
 dotenv.config({ path: './.env' })
 
 let PORT = process.env.PORT || 5000;
-let URI = process.env.URI;
+// let URI = process.env.URI || 
+let URI = "mongodb://127.0.0.1/todo";
 
 // Mongodb Connection
 let connection = mongoose.connect(URI, { useUnifiedTopology: true, useNewUrlParser: true });

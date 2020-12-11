@@ -22,10 +22,15 @@ router.post("/add", (req, res) => {
 });
 
 
-router.delete("/delete/:id/", (req, res) => {
-  User.findByIdAndDelete(req.params.id)
-    .then((response) => res.json(response))
-    .catch((err) => res.status(400).json(err));
+router.delete("/delete/:id/", async(req, res) => {
+  const user = await User.findById(req.params.id);
+  user.remove();
+  res.json(user);
+  next();
+
+  // User.findById(req.params.id)
+  //   .then((response) => res.json(response))
+  //   .catch((err) => res.status(400).json(err));
 });
 
 module.exports = router;
