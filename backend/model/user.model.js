@@ -10,6 +10,12 @@ let userSchema = new Schema(
       unique: true,
       minlength: 3,
     },
+    todo: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Todo"
+      }
+    ]
   },
   {
     timestamps: true,

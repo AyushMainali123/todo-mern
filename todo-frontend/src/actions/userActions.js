@@ -4,6 +4,7 @@ import {
   ADD_USER,
   DELETE_USER,
   DELETE_TODO_BY_USERID,
+  DELETE_TODO_BY_USERNAME,
 } from "../types";
 import axios from "../axiosInstance";
 
@@ -31,13 +32,15 @@ export const getUsers = () => (dispatch) => {
     });
 };
 
-export const addNewUser = (value) => (dispatch) => {
+export const addNewUser = (value, submitProps) => (dispatch) => {
+  const { resetForm, setSubmitting, ...rest } = submitProps;
   axios
     .post(`user/add`, {
       name: value,
     })
     .then((response) => {
       console.log(response);
+
       let { _id: id, name } = response.data;
       dispatch({
         type: ADD_USER,
@@ -45,27 +48,37 @@ export const addNewUser = (value) => (dispatch) => {
           data: { id, name },
         },
       });
+
+      resetForm();
+      setSubmitting(false);
     })
     .catch((error) => {
       console.log(error);
+      setSubmitting(false);
     });
 };
 
 export const deleteUser = (id) => (dispatch) => {
   axios.delete(`user/delete/${id}`).then((response) => {
     console.log(response);
-    const { _id: id } = response.data;
+    const { _id: id, name } = response.data;
     dispatch({
       type: DELETE_USER,
       payload: {
         id,
       },
     });
-    dispatch({
-      type: DELETE_TODO_BY_USERID,
-      payload: {
-        id,
-      },
-    });
+
+    axios.delete(`todo/deleteByUserName/${name}`)
+      .then(response => {
+      console.log(response)
+      dispatch({
+        type: DELETE_TODO_BY_USERNAME,
+        payload: {
+          user: name,
+        },
+      });
+    })
+
   });
 };

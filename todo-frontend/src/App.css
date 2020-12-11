@@ -18,3 +18,7 @@ label {
     display: flex;
     justify-content: center;
 }
+
+textarea:focus {
+    outline: none;
+}
