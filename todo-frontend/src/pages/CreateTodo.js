@@ -57,7 +57,7 @@ const CreateTodo = () => {
             <Form>
               {/* User Select */}
               <div className="form-control">
-                <InputLabel htmlFor="user">User:</InputLabel>
+                <InputLabel htmlFor="user">User</InputLabel>
                 <Field
                   component={Select}
                   name="user"

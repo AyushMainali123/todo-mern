@@ -1,6 +1,7 @@
 // Todo Actions
 
 export const ADD_TODO = "ADD_TODO";
+export const UPDATE_TODO = "UPDATE_TODO";
 export const TODO_SUCCESS = "TODO_SUCCESS";
 export const TODO_FAILURE = "TODO_FAILURE";
 export const DELETE_TODO = "DELETE_TODO";

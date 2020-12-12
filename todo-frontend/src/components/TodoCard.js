@@ -3,12 +3,13 @@ import { Card, CardActions, CardContent, Button } from "@material-ui/core";
 import "./TodoCard.css";
 import { useDispatch } from "react-redux";
 import { removeTodo } from "../actions/todoActions";
+import { Link } from "react-router-dom";
 const TodoCard = ({ id, user, item, description, startDate }) => {
   const dispatch = useDispatch();
   const deleteTodo = () => {
     dispatch(removeTodo(id));
   };
-  const resDate = new Date(startDate).toDateString()
+  const resDate = new Date(startDate).toDateString();
   return (
     <div className="todoCard">
       <Card>
@@ -21,13 +22,15 @@ const TodoCard = ({ id, user, item, description, startDate }) => {
           <div className="todoCard__todo">{item}</div>
           <div className="todoCard__description">{description}</div>
           <div className="todoCard__actionButtons">
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ marginRight: 15 }}
-            >
-              Update
-            </Button>
+            <Link to={`/update/id/${id}/`}>
+              <Button
+                variant="contained"
+                color="primary"
+                style={{ marginRight: 15 }}
+              >
+                Update
+              </Button>
+            </Link>
             <Button
               variant="contained"
               color="secondary"

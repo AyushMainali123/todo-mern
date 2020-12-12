@@ -1,12 +1,11 @@
-import { TODO_SUCCESS, TODO_FAILURE, ADD_TODO, DELETE_TODO } from "../types";
+import { TODO_SUCCESS, TODO_FAILURE, ADD_TODO, DELETE_TODO, UPDATE_TODO } from "../types";
 import axios from "../axiosInstance";
-
 export const getTodos = () => (dispatch) => {
   axios("/todo/")
     .then((response) => {
       let todosToBeDispatched = response.data.map((todoItem) => {
         let { user, item, description, _id: id } = todoItem;
-        console.log("User", {user})
+        console.log("Todo", {todoItem})
         let startDate = new Date(todoItem.startDate);
         return {user, item, description, id, startDate };
       });
@@ -27,6 +26,19 @@ export const getTodos = () => (dispatch) => {
       });
     });
 };
+
+export const updateTodo = (id, newValue, submitProps) => async (dispatch) => {
+  const response = await axios.put(`/todo/update/${id}/`, newValue);
+  const { data } = response;
+  const { user, item, description, startDate } = data;
+  dispatch({
+    type: UPDATE_TODO,
+    payload: {
+      data: { user, item, description, startDate, id },
+    },
+  });
+  submitProps.setSubmitting(false)
+}
 
 export const removeTodo = (id) => (dispatch) => {
   axios

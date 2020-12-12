@@ -39,7 +39,7 @@ function App() {
           <Route path="/create-todo">
             <CreateTodo />
           </Route>
-          <Route path="/update/:id">
+          <Route path="/update/id/:id/">
             <UpdateTodo />
           </Route>
           <Route path="/delete-user">

@@ -38,9 +38,10 @@ router.post("/add", async (req, res) => {
 
 router.put("/update/:id/", (req, res) => {
   let updated = req.body;
+  console.log({updated})
   Todo.findByIdAndUpdate(req.params.id, updated)
-    .then((response) => res.json(response))
-    .catch((err) => res.json(err));
+    .then((response) => res.json(updated))
+    .catch((err) => res.status(400).json(err));
 });
 
 router.delete("/:id", (req, res) => {
